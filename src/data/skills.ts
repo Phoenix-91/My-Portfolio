@@ -1,0 +1,28 @@
+import type { Skill } from '@/types';
+
+export const SKILLS: Skill[] = [
+  {"name": "HTML", "color": "#e44d26", "icon": "html5", "type": "Markup language", "desc": "Structures every web page: headings, links, forms and content."},
+  {"name": "CSS", "color": "#2965f1", "icon": "css3", "type": "Styling language", "desc": "Controls layout, colour and responsive design."},
+  {"name": "JavaScript", "color": "#f7df1e", "icon": "javascript", "type": "Programming language", "desc": "Makes pages interactive, and also runs on servers.", "fg": "#1a1a1a"},
+  {"name": "TypeScript", "color": "#3178c6", "icon": "typescript", "type": "Typed JavaScript", "desc": "JavaScript with types, so bugs show up before the code runs."},
+  {"name": "React", "color": "#149eca", "icon": "react", "type": "UI library", "desc": "Builds interfaces out of small reusable components."},
+  {"name": "Next.js", "color": "#2b2d33", "icon": "nextdotjs", "type": "React framework", "desc": "Adds routing, server rendering and APIs on top of React."},
+  {"name": "Node.js", "color": "#3c873a", "icon": "nodedotjs", "type": "JavaScript runtime", "desc": "Runs JavaScript outside the browser, for backends and tools."},
+  {"name": "Express", "color": "#3a3c42", "icon": "express", "type": "Node.js framework", "desc": "A minimal framework for building REST APIs on Node."},
+  {"name": "MongoDB", "color": "#3fa34d", "icon": "mongodb", "type": "NoSQL database", "desc": "Stores data as flexible JSON-like documents."},
+  {"name": "PostgreSQL", "color": "#336791", "icon": "postgresql", "type": "SQL database", "desc": "A reliable relational database with powerful queries."},
+  {"name": "Prisma", "color": "#0f3d57", "icon": "prisma", "type": "ORM", "desc": "Type-safe database access for Node and TypeScript."},
+  {"name": "Redis", "color": "#dc382d", "icon": "redis", "type": "In-memory store", "desc": "A fast key-value store used for caching and queues."},
+  {"name": "Docker", "color": "#2496ed", "icon": "docker", "type": "Containers", "desc": "Packages an app with its dependencies so it runs the same everywhere."},
+  {"name": "Kubernetes", "color": "#326ce5", "icon": "kubernetes", "type": "Orchestration", "desc": "Deploys, scales and manages containers across machines."},
+  {"name": "AWS", "color": "#f59a1b", "icon": "amazonaws", "type": "Cloud platform", "desc": "Amazon cloud services for hosting, storage and compute.", "fg": "#1a1a1a"},
+  {"name": "Git", "color": "#f05032", "icon": "git", "type": "Version control", "desc": "Tracks changes to code and makes teamwork safe."},
+  {"name": "GitHub", "color": "#2b2d33", "icon": "github", "type": "Code hosting", "desc": "Hosts repositories, pull requests and code review."},
+  {"name": "C++", "color": "#00599c", "icon": "cplusplus", "type": "Programming language", "desc": "A fast compiled language with low-level control."},
+  {"name": "Python", "color": "#3776ab", "icon": "python", "type": "Programming language", "desc": "A readable language for scripting, backends and data work."},
+  {"name": "Tailwind", "color": "#0ea5b7", "icon": "tailwindcss", "type": "CSS framework", "desc": "Utility classes for styling straight in the markup."},
+  {"name": "Nginx", "color": "#009639", "icon": "nginx", "type": "Web server", "desc": "Serves sites and works as a reverse proxy and load balancer."},
+  {"name": "Pandas", "color": "#2d1f7a", "icon": "pandas", "type": "Python library", "desc": "Data analysis and table handling in Python."},
+  {"name": "NumPy", "color": "#4dabcf", "icon": "numpy", "type": "Python library", "desc": "Fast numerical arrays and maths in Python."},
+  {"name": "CI/CD", "color": "#8b5cf6", "icon": "cicd", "type": "Automation", "desc": "Pipelines that test and deploy code on every push."},
+];
