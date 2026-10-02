@@ -1,7 +1,7 @@
 import PixelImage from './PixelImage';
 import { A } from '@/data/assets';
 
-const NAV = [['Home', '#about'], ['Skills', '#skills'], ['Projects', '#projects'], ['Contact', '#contact']];
+const NAV = [['Home', '#home'], ['Skills', '#skills'], ['Projects', '#projects'], ['Contact', '#contact']];
 
 /** Full-width banner (touches both side lines) with the nav box and the swaying plant. */
 export default function Cover() {

@@ -8,7 +8,8 @@ const ENTRIES = [
 
 export default function Academics() {
   return (
-    <div className="card">
+    <div className="card acad-card">
+      <PixelImage a={A.cap} className="grad-cap" />
       <h3>Academics</h3>
       <div className="tl">
         {ENTRIES.map((e) => (

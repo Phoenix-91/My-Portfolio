@@ -2,7 +2,7 @@ import TopBar from '@/components/TopBar';
 import Cover from '@/components/Cover';
 import Hero from '@/components/Hero';
 import Academics from '@/components/Academics';
-import ArtCard from '@/components/ArtCard';
+import Experience from '@/components/Experience';
 import DailyQuote from '@/components/DailyQuote';
 import About from '@/components/About';
 import GithubGraph from '@/components/GithubGraph';
@@ -19,13 +19,13 @@ export default function Home() {
   return (
     <>
       <TopBar />
-      <main className="page">
+      <main className="page" id="home">
         <Cover />
         <Hero />
         <section className="grid" id="about">
           <aside className="stack" id="academics">
             <Academics />
-            <ArtCard />
+            <Experience />
           </aside>
           <article className="stack">
             <DailyQuote />

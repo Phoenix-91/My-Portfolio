@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover' };
 
-const FONTS = 'https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Pixelify+Sans:wght@400;600&display=swap';
+const FONTS = 'https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Pixelify+Sans:wght@400;600&display=swap';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
