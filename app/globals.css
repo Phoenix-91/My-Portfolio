@@ -1,0 +1,14 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+:root { --accent: #f4f4f5; } /* monochrome theme: change this one variable to retheme the site */
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; }
+body { @apply bg-bg text-zinc-200 antialiased; background-image: radial-gradient(circle at 70% 0%, rgba(255,255,255,.035), transparent 40%); }
+.card { @apply rounded-2xl border border-white/[.08] bg-white/[.03] backdrop-blur-md; }
+.chip { @apply inline-flex items-center gap-2 rounded-lg border border-white/[.08] bg-white/[.04] px-3 py-1.5 text-xs text-zinc-300; }
+.btn { @apply inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent; }
+.h2 { @apply text-lg md:text-[1.3rem] font-semibold text-white after:mt-2 after:block after:h-0.5 after:w-9 after:rounded after:bg-accent; }
+.kb { transform: rotateX(58deg) rotateZ(-38deg); transform-style: preserve-3d; }
+.key { box-shadow: 0 6px 0 #050607, 0 10px 14px rgba(0,0,0,.6); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; } }
+
+/* Scale rem with viewport on desktop so the layout matches the 1600px reference at any width */
+@media (min-width:768px){ html{ font-size: clamp(9px, 1vw, 20px); } }
