@@ -1,34 +1,64 @@
-// All site content lives here. Replace TODO values with your real ones.
+import { Atom, Bot, Boxes, Briefcase, Cloud, Database, GraduationCap, Github, Hexagon, Home, Leaf, Mail, Server, User, Wrench, type LucideIcon } from 'lucide-react';
+
 export const profile = {
-  name: "Paramveer", surname: "Rana",
-  title: "Full Stack Developer • AI Enthusiast • Problem Solver",
-  tagline: "I build scalable web applications and explore the intersection of AI and modern development.",
-  bio: "Hi, I'm Paramveer Rana, a BCA graduate and MCA student at Chandigarh University and passionate developer from Chandigarh. I love building products, solving complex problems, and constantly learning new technologies — from full-stack development to AI/ML.",
-  email: "you@example.com", // TODO
-  resume: "/resume.pdf",     // TODO: add public/resume.pdf
-  socials: { github: "https://github.com/Phoenix-91", linkedin: "https://linkedin.com/in/", x: "https://x.com/" }, // TODO
-  stats: [{ v: "10+", l: "Projects" }, { v: "MCA", l: "(2026–2028)" }, { v: "BCA", l: "(2023–2026)" }],
+  name: 'Paramveer Rana',
+  role: ['Full Stack Developer', 'AI Enthusiast', 'Cloud & DevOps'],
+  quote: 'Building scalable solutions, one commit at a time.',
+  email: 'paramveer.rana.dev@email.com',
+  github: 'github.com/paramveer-rana',
+  linkedin: 'linkedin.com/in/paramveer-rana-dev',
+  site: 'paramveer.dev',
 };
-export const githubUser = "Phoenix-91";
-export const nav = [
-  { id: "home", label: "Home", href: "/" }, { id: "about", label: "About", href: "/about" }, { id: "skills", label: "Skills", href: "/skills" },
-  { id: "projects", label: "Projects", href: "/projects" }, { id: "contact", label: "Contact", href: "/contact" },
+
+export const nav: { href: string; label: string; icon: LucideIcon }[] = [
+  { href: '/', label: 'Home', icon: Home },
+  { href: '/about', label: 'About', icon: User },
+  { href: '/skills', label: 'Skills', icon: Wrench },
+  { href: '/projects', label: 'Projects', icon: Boxes },
+  { href: '/experience', label: 'Experience', icon: Briefcase },
+  { href: '/academics', label: 'Academics', icon: GraduationCap },
+  { href: '/contact', label: 'Contact', icon: Mail },
 ];
-export const featuredSkills = ["React","Next.js","TypeScript","Tailwind CSS","Node.js","Express","MongoDB","PostgreSQL","Redis","AWS","Docker","Kubernetes","Nginx","Git","Linux","Python","NumPy","Pandas","AI/ML","LLM APIs"];
-export const skillGroups: Record<string, string[]> = {
-  Frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-  Backend: ["Node.js", "Express", "Python"],
-  Databases: ["MongoDB", "PostgreSQL", "Redis"],
-  "DevOps & Cloud": ["Docker", "Kubernetes", "AWS", "Nginx", "Git", "Linux"],
-};
-export const aiTech = ["Python", "NumPy", "Pandas", "PyTorch", "TensorFlow", "LLM APIs"]; // TODO: remove any you don't use
-export const projects = [
-  { name: "Nexus.AI", category: "AI/ML", desc: "An advanced AI platform for interview preparation with real-time voice conversation, ATS checker and personalized learning path.",
-    stack: ["Next.js", "React", "Groq", "Clerk", "Tailwind"], image: "", github: "https://github.com/Phoenix-91", live: "" }, // TODO: image in /public + real links; add more projects
+
+export const COLORS = { blue: '#5b8def', green: '#3fb950', purple: '#9b6bf2', sky: '#7ab4ff' };
+
+export interface SkillGroup { tab: string; name: string; desc: string; tags: string[]; icon: LucideIcon; ghost: LucideIcon; color: string }
+export const skillGroups: SkillGroup[] = [
+  { tab: 'Frontend', name: 'Frontend', desc: 'Building beautiful and responsive user interfaces.', tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Redux'], icon: Atom, ghost: Atom, color: '#4cc2ff' },
+  { tab: 'Backend', name: 'Backend', desc: 'Scalable and robust server-side applications.', tags: ['Node.js', 'Express', 'Python', 'Django', 'FastAPI'], icon: Server, ghost: Hexagon, color: '#5b8def' },
+  { tab: 'Backend', name: 'Database', desc: 'Managing and optimizing data for performance.', tags: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis'], icon: Database, ghost: Leaf, color: '#5b8def' },
+  { tab: 'AI / ML', name: 'AI / ML', desc: 'Building intelligent systems and exploring AI.', tags: ['PyTorch', 'TensorFlow', 'LangChain', 'Groq'], icon: Bot, ghost: Bot, color: '#b36bf2' },
+  { tab: 'DevOps', name: 'DevOps & Cloud', desc: 'Deploying and scaling applications in the cloud.', tags: ['Docker', 'Kubernetes', 'AWS', 'CI/CD'], icon: Cloud, ghost: Cloud, color: '#4aa3ff' },
+  { tab: 'Tools', name: 'Tools & Others', desc: 'Productivity and development tools I use daily.', tags: ['Git', 'GitHub', 'Linux', 'VS Code', 'Figma'], icon: Wrench, ghost: Github, color: '#5b8def' },
 ];
-export const education = [
-  { degree: "Master of Computer Applications (MCA)", school: "Chandigarh University", period: "2026 – 2028", status: "Pursuing" },
-  { degree: "Bachelor of Computer Applications (BCA)", school: "Chandigarh University", period: "2023 – 2026", status: "Completed" },
+export const skillTabs = ['All Skills', 'Frontend', 'Backend', 'AI / ML', 'DevOps', 'Tools'];
+export const homeChips = ['React', 'Next.js', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Python', 'PyTorch', 'Machine Learning', 'AWS', 'Docker', 'Kubernetes'];
+
+export const stack = [
+  { label: 'Frontend', value: 90, color: COLORS.blue },
+  { label: 'Backend', value: 85, color: COLORS.sky },
+  { label: 'AI / ML', value: 80, color: COLORS.green },
+  { label: 'DevOps', value: 75, color: COLORS.green },
+  { label: 'Tools', value: 90, color: COLORS.purple },
+  { label: 'Database', value: 85, color: COLORS.sky },
 ];
-// TODO: add your internship role, dates and what you worked on
-export const experience = [{ role: "Intern", org: "The Entrepreneurship Network", period: "", note: "", logo: "/logos/ten.png" }];
+
+export interface Project { slug: string; name: string; sub: string; desc: string; tags: string[]; cat: 'Web Apps' | 'AI / ML' | 'DevOps' | 'Other'; image: string }
+export const projects: Project[] = [
+  { slug: 'nexus-ai', name: 'Nexus.AI', sub: 'AI Interview Preparation Platform', desc: 'An intelligent platform to prepare for interviews with AI-powered mock interviews, resume analysis and ATS checker.', tags: ['Next.js', 'TypeScript', 'Groq', 'MongoDB', 'Clerk', 'Tailwind'], cat: 'AI / ML', image: '/images/nexus.png' },
+  { slug: 'chatflow', name: 'ChatFlow', sub: 'Real-time Chat App', desc: 'Real-time AI chatbot with multi-language translation and WebSockets.', tags: ['Next.js', 'Tailwind', 'MongoDB'], cat: 'Web Apps', image: '/images/projects/chatflow.png' },
+  { slug: 'mindsync', name: 'MindSync', sub: 'Wellbeing Journal', desc: 'A wellbeing journal to track mood, habits and mental health.', tags: ['HTML', 'CSS', 'JS', 'PHP'], cat: 'Web Apps', image: '/images/projects/mindsync.png' },
+  { slug: 'pdf-rag', name: 'PDF RAG', sub: 'Chat with PDFs', desc: 'Chat with your PDF documents using RAG and Groq.', tags: ['Python', 'Flask', 'FAISS'], cat: 'AI / ML', image: '/images/projects/pdf-rag.png' },
+  { slug: 'recipe-ai', name: 'Recipe AI', sub: 'AI Recipes', desc: 'Get personalized recipes with AI recommendations.', tags: ['Next.js', 'OpenAI', 'Tailwind'], cat: 'AI / ML', image: '/images/projects/recipe-ai.png' },
+];
+export const featuredPoints = ['Real-time AI voice interviews', 'Resume analysis & ATS score', '30-day action plan', 'Multi-LLM support'];
+
+export interface TimelineItem { when?: string; title: string; place: string }
+export const experience: TimelineItem[] = [
+  { when: '2024 – Present', title: 'BCA', place: 'Chandigarh University' },
+  { when: '2024 (3 Months)', title: 'React JS Developer Intern', place: 'The Entrepreneurship Network (TEN)' },
+];
+export const academics: TimelineItem[] = [
+  { title: 'Chandigarh University', place: 'BCA (2023 – 2026)' },
+  { title: 'Sharda Sarvhit Kari Model School', place: '12th – Science (Non-Medical)' },
+];

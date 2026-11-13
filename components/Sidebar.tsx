@@ -1,30 +1,54 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-import { Home, User, GraduationCap, PlusCircle, Mail } from "lucide-react";
-import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
-import { nav, profile } from "@/lib/data";
-const icons: Record<string, typeof Home> = { home: Home, about: User, skills: GraduationCap, projects: PlusCircle, contact: Mail };
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { Github, Laptop, Linkedin, Mail } from 'lucide-react';
+import { nav, profile } from '@/lib/data';
+import Heatmap from './Heatmap';
+import Art from './Art';
+
 export default function Sidebar() {
   const path = usePathname();
-  const soc = [[FaGithub, profile.socials.github, "GitHub"], [FaLinkedinIn, profile.socials.linkedin, "LinkedIn"], [FaXTwitter, profile.socials.x, "X"], [Mail, `mailto:${profile.email}`, "Email"]] as const;
   return (
-    <aside className="card fixed inset-x-3 bottom-3 z-40 flex items-center justify-around p-2 md:inset-x-auto md:inset-y-[1.5rem] md:left-[2rem] md:w-[11.9rem] md:flex-col md:items-stretch md:justify-start md:p-[1.4rem]">
-      <Link href="/" aria-label="Home" className="hidden pb-[2.4rem] text-[3.4rem] font-black italic leading-none text-accent md:block">P</Link>
-      <nav aria-label="Main" className="flex w-full justify-around gap-1 md:flex-col md:justify-start">
-        {nav.map((n) => { const I = icons[n.id]; const on = n.href === "/" ? path === "/" : path.startsWith(n.href); return (
-          <Link key={n.id} href={n.href} aria-current={on ? "page" : undefined} aria-label={n.label}
-            className={`relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors md:py-[.95rem] md:text-[1.05rem] ${on ? "text-accent" : "text-zinc-400 hover:text-white"}`}>
-            {on && <motion.span layoutId="nav-pill" transition={{ type: "spring", stiffness: 380, damping: 32 }} className="absolute inset-0 rounded-xl bg-accent/10 ring-1 ring-accent/15" />}
-            <I size={17} className="relative shrink-0" /><span className="relative hidden md:inline">{n.label}</span></Link>); })}
+    <>
+      <nav className="sticky top-10 z-30 flex gap-1 overflow-x-auto border-b border-line bg-panel px-2 py-2 md:hidden" aria-label="Primary">
+        {nav.map(({ href, label, icon: Icon }) => (
+          <Link key={href} href={href} className={`flex items-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs ${path === href ? 'bg-[#26263a] text-white' : 'text-mut'}`}><Icon size={14} />{label}</Link>
+        ))}
       </nav>
-      <div className="mt-auto hidden md:block">
-        <p className="border-t border-white/[.08] pt-[1.4rem] text-[1rem] leading-snug text-zinc-400">Let&apos;s build something amazing together. 🚀</p>
-        <Link href="/contact" className="btn mt-[1.2rem] w-full justify-center border border-accent/50 py-[.9rem] text-[1rem] text-accent hover:bg-accent/10">Hire Me →</Link>
-        <div className="mt-[3rem] flex justify-between px-1 text-zinc-300">{soc.map(([I, h, l]) => <a key={l} href={h} aria-label={l} className="transition hover:-translate-y-0.5 hover:text-white"><I size={17} /></a>)}</div>
-        <p className="mt-[1.2rem] text-[.85rem] leading-relaxed text-zinc-600">© 2026 Paramveer Rana<br />Built with Next.js</p>
-      </div>
-    </aside>
+      <aside className="sticky top-10 hidden h-[calc(100vh-40px)] w-[200px] shrink-0 flex-col gap-3 overflow-hidden border-r border-line bg-panel px-3 py-5 md:flex">
+        <div className="px-2 pb-3 font-serif text-[28px] font-bold italic leading-none">P/</div>
+        <nav className="flex flex-col gap-0.5" aria-label="Primary">
+          {nav.map(({ href, label, icon: Icon }) => {
+            const on = path === href;
+            return (
+              <Link key={href} href={href} className={`relative flex items-center gap-2.5 rounded-lg px-3 py-2 text-[13px] transition-colors ${on ? 'text-white' : 'text-mut hover:bg-[#1f1f22] hover:text-white'}`}>
+                {on && <motion.span layoutId="navpill" className="absolute inset-0 rounded-lg bg-[#26263a]" transition={{ type: 'spring', stiffness: 400, damping: 34 }} />}
+                <Icon size={16} className={`relative ${on ? 'text-ac' : ''}`} /><span className="relative">{label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="card mt-2 !p-3">
+          <div className="flex items-center gap-1.5 text-xs font-semibold"><Github size={14} />GitHub Stats</div>
+          <p className="mt-2 text-[11px] text-mut">Total Contributions</p>
+          <p className="mb-2 text-xl font-semibold">1.2k+ <span className="text-sm text-[#3fb950]">↗</span></p>
+          <Heatmap weeks={12} gap={2} />
+        </div>
+        <div className="card mt-auto !p-2 text-center">
+          <Art src="/images/cat.png" className="mb-1.5 h-[80px] rounded-lg" fallback="linear-gradient(135deg,#2a2630,#15151a)" />
+          <p className="flex items-center justify-center gap-1.5 text-[11px] text-mut">Keep coding... <Laptop size={12} /></p>
+        </div>
+        <div className="px-1 pt-1">
+          <p className="text-xs font-semibold">{profile.name}</p>
+          <p className="text-[11px] text-mut">Full Stack Developer</p>
+          <div className="mt-3 flex gap-4 text-mut">
+            <a href={`https://${profile.github}`} aria-label="GitHub"><Github size={15} /></a>
+            <a href={`https://${profile.linkedin}`} aria-label="LinkedIn"><Linkedin size={15} /></a>
+            <a href={`mailto:${profile.email}`} aria-label="Email"><Mail size={15} /></a>
+          </div>
+        </div>
+      </aside>
+    </>
   );
 }
