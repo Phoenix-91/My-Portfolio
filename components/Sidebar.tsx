@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Github, Laptop, Linkedin, Mail } from 'lucide-react';
+import { Github, Laptop, Linkedin, Mail, Code2 } from 'lucide-react';
 import { nav, profile } from '@/lib/data';
 import Heatmap from './Heatmap';
 import Art from './Art';
@@ -43,8 +43,9 @@ export default function Sidebar() {
           <p className="text-xs font-semibold">{profile.name}</p>
           <p className="text-[11px] text-mut">Full Stack Developer</p>
           <div className="mt-3 flex gap-4 text-mut">
-            <a href={`https://${profile.github}`} aria-label="GitHub"><Github size={15} /></a>
-            <a href={`https://${profile.linkedin}`} aria-label="LinkedIn"><Linkedin size={15} /></a>
+            <a href={`https://${profile.github}`} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github size={15} /></a>
+            <a href={`https://${profile.linkedin}`} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin size={15} /></a>
+            <a href={`https://${profile.leetcode}`} target="_blank" rel="noopener noreferrer" aria-label="LeetCode"><Code2 size={15} /></a>
             <a href={`mailto:${profile.email}`} aria-label="Email"><Mail size={15} /></a>
           </div>
         </div>
