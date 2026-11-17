@@ -5,25 +5,6 @@ import { BarChart3, Quote } from 'lucide-react';
 import { skillGroups, skillTabs, stack } from '@/lib/data';
 import Ring from './Ring';
 import Stat from './Stat';
-import {
-  SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss,
-  SiNodedotjs, SiExpress, SiPython,
-  SiMongodb, SiPostgresql, SiRedis,
-  SiNumpy, SiPandas, SiPlotly,
-  SiDocker, SiKubernetes, SiLinux, SiNginx, SiGithubactions,
-  SiGit, SiGithub,
-} from 'react-icons/si';
-import { FaAws } from 'react-icons/fa';
-import type { IconType } from 'react-icons';
-
-const iconMap: Record<string, IconType> = {
-  SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss,
-  SiNodedotjs, SiExpress, SiPython,
-  SiMongodb, SiPostgresql, SiRedis,
-  SiNumpy, SiPandas, SiPlotly,
-  SiDocker, SiKubernetes, FaAws, SiLinux, SiNginx, SiGithubactions,
-  SiGit, SiGithub,
-};
 
 export default function SkillsView() {
   const [tab, setTab] = useState('All Skills');
@@ -39,21 +20,11 @@ export default function SkillsView() {
       </div>
       <motion.div layout className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {list.map(({ name, desc, skills, icon: Icon, ghost: Ghost, color }) => (
+          {list.map(({ name, desc, tags, icon: Icon, ghost: Ghost, color }) => (
             <motion.article layout key={name} initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }} transition={{ duration: 0.25 }} className="card relative min-h-[142px] overflow-hidden">
               <h2 className="h3"><Icon size={18} style={{ color }} />{name}</h2>
               <p className="max-w-[210px] text-xs leading-relaxed text-mut">{desc}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {skills.map((s) => {
-                  const SIcon = iconMap[s.icon];
-                  return (
-                    <span key={s.name} className="chip flex items-center gap-1.5 !px-2.5 !py-1.5">
-                      {SIcon && <SIcon size={14} style={{ color: s.color }} />}
-                      {s.name}
-                    </span>
-                  );
-                })}
-              </div>
+              <div className="mt-3 flex flex-wrap gap-1.5">{tags.map((t) => <span key={t} className="chip">{t}</span>)}</div>
               <Ghost size={84} strokeWidth={1.2} className="pointer-events-none absolute right-4 top-6 text-white opacity-[0.07]" />
             </motion.article>
           ))}
@@ -72,7 +43,7 @@ export default function SkillsView() {
         </section>
         <section className="card flex min-h-[150px] flex-col justify-between !p-5" style={{ background: 'linear-gradient(135deg,#2a2a2e,#141416)' }}>
           <Quote size={18} className="text-mut" />
-          <p className="font-serif text-lg italic">"Code. Build. Innovate."</p>
+          <p className="font-serif text-lg italic">“Code. Build. Innovate.”</p>
           <p className="text-right text-xs text-mut">— Paramveer Rana</p>
         </section>
       </div>

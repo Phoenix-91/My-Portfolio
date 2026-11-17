@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import { BarChart3, Compass, ExternalLink, Github, Laptop, Linkedin, Mail, Code2, RefreshCw, Rocket, User, Wrench } from 'lucide-react';
+import { ArrowRight, BarChart3, Compass, ExternalLink, Github, GraduationCap, Globe, Laptop, Linkedin, Mail, RefreshCw, Rocket, User, Briefcase, Wrench } from 'lucide-react';
 import TopBar from '@/components/TopBar';
 import Art from '@/components/Art';
 import Fade from '@/components/Fade';
-import GitHubHeatmap from '@/components/GitHubHeatmap';
-import { homeChips, nav, profile, projects } from '@/lib/data';
+import Heatmap from '@/components/Heatmap';
+import Timeline from '@/components/Timeline';
+import { academics, experience, homeChips, nav, profile, projects } from '@/lib/data';
 
-const dots = ['#61DAFB', '#ffffff', '#3178C6', '#F7DF1E', '#339933', '#ffffff', '#47A248', '#4169E1', '#DC382D', '#3776AB', '#013243', '#150458', '#2496ED', '#326CE5', '#FF9900', '#FCC624', '#009639', '#F05032', '#2088FF', '#06B6D4'];
+const months = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+const dots = ['#5bc0eb', '#e8e8ea', '#4c8dff', '#7ac74f', '#9aa0a6', '#3fb950', '#ffd43b', '#ee4c2c', '#b36bf2', '#ff9900', '#2496ed', '#326ce5'];
 
 export default function HomePage() {
   return (
@@ -19,14 +21,13 @@ export default function HomePage() {
           <div>
             <h1 className="flex items-center gap-3 text-[30px] font-bold leading-tight"><Laptop size={30} className="text-[#cfd3da]" />{profile.name}</h1>
             <p className="mt-1 text-[13px] text-mut">{profile.role.join('  ·  ')}</p>
-            <p className="mt-5 border-l-2 border-[#555] pl-3 text-[13px] italic text-mut">&quot;{profile.quote}&quot;</p>
+            <p className="mt-5 border-l-2 border-[#555] pl-3 text-[13px] italic text-mut">“{profile.quote}”</p>
           </div>
           <span className="flex items-center gap-2 rounded-full border border-line px-4 py-1.5 text-xs"><i className="h-2 w-2 rounded-full bg-[#3fb950]" />Available for Opportunities</span>
         </div>
         <hr className="my-7 border-line" />
 
         <div className="grid gap-7 lg:grid-cols-[170px_1fr_270px]">
-          {/* Left sidebar — navigation */}
           <aside className="hidden flex-col lg:flex">
             <p className="h3"><Compass size={16} />NAVIGATION</p>
             <nav className="flex flex-col gap-0.5">
@@ -43,64 +44,63 @@ export default function HomePage() {
             </svg>
           </aside>
 
-          {/* Center — main content */}
           <div className="min-w-0 space-y-9 lg:border-x lg:border-line lg:px-7">
-            {/* GitHub Contribution Heatmap */}
             <section>
-              <div className="mb-3 flex items-center justify-between">
-                <p className="h3 !mb-0"><BarChart3 size={16} className="text-[#4c8dff]" />GitHub Activity</p>
-                <a href={`https://${profile.github}`} target="_blank" rel="noopener noreferrer" className="text-xs text-mut hover:text-white">
-                  @{profile.githubUsername} ↗
-                </a>
-              </div>
-              <GitHubHeatmap />
+              <div className="mb-3 flex items-center justify-between"><p className="h3 !mb-0"><BarChart3 size={16} className="text-[#4c8dff]" />GitHub Activity</p><span className="text-xs text-mut">Total Contributions: 1,200+ ↗</span></div>
+              <div className="mb-1.5 flex justify-between text-[10px] text-mut">{months.map((m) => <span key={m}>{m}</span>)}</div>
+              <Heatmap weeks={52} />
             </section>
-
-            {/* About Me */}
-            <section>
-              <p className="h3"><User size={16} className="text-mut" />About Me</p>
-              <p className="text-[13px] leading-relaxed text-[#c8c8ce]">I&apos;m a BCA student at Chandigarh University, passionate about building impactful products, exploring AI, and solving real-world problems through code.</p>
-              <Link href="/about" className="mt-4 inline-block text-xs text-mut hover:text-white">Learn more →</Link>
-            </section>
-
-            {/* Featured Projects */}
+            <div className="grid gap-9 md:grid-cols-2">
+              <section>
+                <p className="h3"><User size={16} className="text-mut" />About Me</p>
+                <p className="text-[13px] leading-relaxed text-[#c8c8ce]">I’m a BCA student at Chandigarh University, passionate about building impactful products, exploring AI, and solving real-world problems through code.</p>
+                <Link href="/about" className="mt-4 inline-block text-xs text-mut hover:text-white">Learn more →</Link>
+              </section>
+              <section>
+                <p className="h3"><Briefcase size={16} className="text-mut" />Experience &amp; Education</p>
+                <Timeline items={experience} />
+              </section>
+            </div>
             <section>
               <div className="mb-3 flex items-center justify-between"><p className="h3 !mb-0"><Rocket size={16} className="text-[#e5675a]" />Featured Projects</p><Link href="/projects" className="text-xs text-mut hover:text-white">View all →</Link></div>
               <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
                 {projects.slice(0, 4).map((p) => (
-                  <a key={p.slug} href={p.github || '/projects'} target={p.github ? '_blank' : undefined} rel={p.github ? 'noopener noreferrer' : undefined} className="card block overflow-hidden !p-0 transition-colors hover:border-[#444]">
+                  <Link key={p.slug} href="/projects" className="card block overflow-hidden !p-0 transition-colors hover:border-[#444]">
                     <Art src={p.image} className="h-[66px]" />
                     <div className="p-2.5">
                       <p className="flex items-center justify-between text-xs font-semibold">{p.name}<ExternalLink size={10} className="text-mut" /></p>
                       <p className="text-[10px] text-mut">{p.sub}</p>
                       <div className="mt-1.5 flex gap-1.5">{p.tags.slice(0, 2).map((t) => <span key={t} className="chip !px-2 !text-[9px]">{t}</span>)}</div>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </section>
           </div>
 
-          {/* Right sidebar — skills */}
           <div className="space-y-8">
             <section>
               <p className="h3"><Wrench size={16} className="text-mut" />Technical Skills</p>
               <div className="flex flex-wrap gap-2">
-                {homeChips.map((c, i) => <span key={c} className="chip flex items-center gap-1.5 !px-3 !py-1.5"><i className="h-2 w-2 rounded-full" style={{ background: dots[i] || '#888' }} />{c}</span>)}
+                {homeChips.map((c, i) => <span key={c} className="chip flex items-center gap-1.5 !px-3 !py-1.5"><i className="h-2 w-2 rounded-full" style={{ background: dots[i] }} />{c}</span>)}
+                <span className="chip !px-3 !py-1.5">+ 7 more...</span>
               </div>
             </section>
             <Art src="/images/space.png" className="h-[84px] rounded-xl" fallback="linear-gradient(135deg,#0a1230,#2a3a78)" />
+            <section>
+              <p className="h3"><GraduationCap size={16} className="text-mut" />Academics</p>
+              <Timeline items={academics} />
+            </section>
           </div>
         </div>
 
-        {/* Footer */}
         <div className="mt-10 flex flex-wrap items-center justify-between gap-5 border-t border-line pt-6">
-          <div className="flex items-start gap-4"><Mail size={20} className="mt-0.5 text-mut" /><div><p className="font-semibold">Let&apos;s Connect</p><p className="text-xs text-mut">Open for internships, collaborations and exciting opportunities!</p></div></div>
+          <div className="flex items-start gap-4"><Mail size={20} className="mt-0.5 text-mut" /><div><p className="font-semibold">Let’s Connect</p><p className="text-xs text-mut">Open for internships, collaborations and exciting opportunities!</p></div></div>
           <div className="flex flex-wrap gap-2.5">
-            <a className="btn" href={`https://${profile.github}`} target="_blank" rel="noopener noreferrer"><Github size={15} />GitHub</a>
-            <a className="btn" href={`https://${profile.linkedin}`} target="_blank" rel="noopener noreferrer"><Linkedin size={15} />LinkedIn</a>
-            <a className="btn" href={`https://${profile.leetcode}`} target="_blank" rel="noopener noreferrer"><Code2 size={15} />LeetCode</a>
+            <a className="btn" href={`https://${profile.github}`}><Github size={15} />GitHub</a>
+            <a className="btn" href={`https://${profile.linkedin}`}><Linkedin size={15} />Linkedin</a>
             <a className="btn" href={`mailto:${profile.email}`}><Mail size={15} />Email</a>
+            <a className="btn" href={`https://${profile.site}`}><Globe size={15} />Portfolio</a>
           </div>
         </div>
       </Fade>

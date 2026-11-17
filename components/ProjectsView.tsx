@@ -23,7 +23,7 @@ export default function ProjectsView() {
           <p className="mb-1.5 text-[13px] font-semibold text-[#c8c8ce]">{f.sub}</p>
           <p className="text-xs leading-relaxed text-mut">{f.desc}</p>
           <div className="mt-3 flex flex-wrap gap-1.5">{f.tags.map((t) => <span key={t} className="chip">{t}</span>)}</div>
-          {f.github ? <a href={f.github} target="_blank" rel="noopener noreferrer" className="btn mt-3 !px-3 !py-1.5 !text-xs">View Project <ArrowRight size={12} /></a> : <span className="btn mt-3 !px-3 !py-1.5 !text-xs">View Project <ArrowRight size={12} /></span>}
+          <span className="btn mt-3 !px-3 !py-1.5 !text-xs">View Project <ArrowRight size={12} /></span>
         </div>
         <ul className="space-y-3 text-xs">{featuredPoints.map((p) => <li key={p} className="flex items-center gap-2"><Check size={14} className="text-mut" />{p}</li>)}</ul>
         <Art src={f.image} className="h-[135px] rounded-lg border border-line" />
